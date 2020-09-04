@@ -13,19 +13,11 @@ oc login $OPENSHIFT_API_URL \
     --insecure-skip-tls-verify=true
 
 echo "Logging into Openshift image registry"
-if [ ! -z $USE_DOCKER ]
-then
-  docker login \
-      --username $OPENSHIFT_USERNAME \
-      --password $(oc whoami -t) \
-      $OPENSHIFT_REGISTRY_URL
-else
-  podman login \
-    --username $OPENSHIFT_USERNAME \
-    --password $(oc whoami -t) \
-    --tls-verify=false \
-    $OPENSHIFT_REGISTRY_URL
-fi
+podman login \
+  --username $OPENSHIFT_USERNAME \
+  --password $(oc whoami -t) \
+  --tls-verify=false \
+  $OPENSHIFT_REGISTRY_URL
 
 echo "Deleting Openliberty app"
 oc -n $OPENSHIFT_PROJECT delete OpenLibertyApplication appmod
