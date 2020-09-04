@@ -7,10 +7,10 @@ OPENSHIFT_API_URL="api.atsocpd1.dmz:6443"
 OPENSHIFT_REGISTRY_URL="default-route-openshift-image-registry.apps.atsocpd1.dmz"
 
 # The id of an Openshift user that has kube admin privileges
-OPENSHIFT_USERNAME="<USERNN>"
+OPENSHIFT_USERNAME="<userNN>"
 
 # The password of the admin user above
-OPENSHIFT_PASSWORD="<PASSWORD>"
+OPENSHIFT_PASSWORD="<p@ssw0rd>"
 
 # The name of the Openshift project that want to use for this OpenLiberty application
-OPENSHIFT_PROJECT="<USERNN-PROJECT>"
+OPENSHIFT_PROJECT="<userNN-project>"
