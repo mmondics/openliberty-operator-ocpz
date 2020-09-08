@@ -19,14 +19,6 @@ The demo application used (mod resorts) is admitedly a simple use-case, with no 
 A word about building container images.
 In the example below, we will be using a pre-existing container image containing Open Liberty from a public image registry (Docker Hub in this case) as a basis upon which to build.  Customers quite often don't permit container images from public Docker Hub to be used inside their enterprise.  Thus, the question about what to use and/or how to build a custom image often arises.  There are many options available.  See the [WebSphere Liberty Knowledge Center](https://www.ibm.com/support/knowledgecenter/en/SSAW57_liberty/com.ibm.websphere.wlp.nd.multiplatform.doc/ae/twlp_container_cont.html)
 
-## Pre-requisites
-
-- An Openshift 4.2 or 4.3 cluster running on IBM Z or LinuxONE
-  - A userid with cluster-admin privileges
-  - The cluster's image registry is configured with persistent storage
-  - The cluster's image registry is exposed via the default route
-- A client system with the oc cli and either; a) Docker, or b) podman & buildah
-
 ## Resources
 
 - [Open Liberty Operator](https://www.github.com/OpenLiberty/open-liberty-operator)
@@ -73,7 +65,7 @@ Here we will do it manaually to show the steps involved.  We will be using a sim
 Please refer to the contents of the [ol-app-install](ol-app-install) folder.  
 
 As a convenience, there are a number of shell scripts provided which automate the manual steps described in the sections below. 
-You can use the shell scripts by transfering them to a system containing the Openshift `oc` command line tool, and container runtime tools (either Docker or buildah & podman).  Before running the shell scripts, **be sure to edit the environment variables in the `env` file**, to reflect your system-specfic settings.
+You can use the shell scripts by transfering them to a system containing the Openshift `oc` command line tool, and container runtime tools (buildah & podman).  Before running the shell scripts, **be sure to edit the environment variables in the `env` file**, to reflect your system-specfic settings.
 
 The shell scripts in the ol-app-install folder;
 Name              | Description
@@ -85,7 +77,7 @@ env               | Envrironment variables (sourced by the shell scripts)
 
 
 ## Build and push the container image  
-Log onto a system where the Openshift `oc` cli tool, and either; a) Docker or b) podman & buildah are installed.  
+Log onto a system where the Openshift `oc` cli tool, and podman & buildah are installed.  
 Copy the following files from the `ol-app-install` folder onto the system;
 - Dockerfile
 - app-mod-withroute_cr.yaml
@@ -101,20 +93,14 @@ Copy the following files from the `ol-app-install` folder onto the system;
   ```oc new-project <OPENSHIFT_PROJECT>```  
 
 1. Log into the Openshift internal image registry  
-  If the client system has Docker  
-    ```docker login --username <userid> --password $(oc whoami -t) <OPENSHIFT_REGISTRY_URL>```  
   If the client system has podman & buildah  
     ```podman login --username <userid> --password $(oc whoami -t) --tls-verify=false <OPENSHIFT_REGISTRY_URL>```  
 
 1. Build the container image  
-  If the client system has Docker  
-    ```docker build -t <OPENSHIFT_REGISTRY_URL>/<OPENSHIFT_PROJECT>/app-modernization:v1.0.0 .```  
   If the client system has podman & buildah  
     ```buildah build-using-dockerfile -t <OPENSHIFT_REGISTRY_URL>/<OPENSHIFT_PROJECT>/app-modernization:v1.0.0 .```  
     
 1. Push the image  
-  If the client system has Docker  
-    ```docker push <OPENSHIFT_REGISTRY_URL>/<OPENSHIFT_PROJECT>/app-modernization:v1.0.0```  
   If the client system has podman & buildah  
     ```podman push --tls-verify=false <OPENSHIFT_REGISTRY_URL>/<OPENSHIFT_PROJECT>/app-modernization:v1.0.0```
 
