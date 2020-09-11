@@ -4,8 +4,6 @@ unset KUBECONFIG
 
 . ./env
 
-USE_DOCKER=$(which docker 2>/dev/null)
-
 echo "Logging into Openshift"
 oc login $OPENSHIFT_API_URL \
     --username=$OPENSHIFT_USERNAME \
@@ -24,6 +22,4 @@ oc -n $OPENSHIFT_PROJECT delete OpenLibertyApplication appmod
 
 sleep 5
 
-echo "Deleting $OPENSHIFT_PROJECT project"
-oc delete project $OPENSHIFT_PROJECT
 
