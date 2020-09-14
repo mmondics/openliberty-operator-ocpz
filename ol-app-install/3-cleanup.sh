@@ -4,13 +4,13 @@ unset KUBECONFIG
 
 . ./env
 
-echo "Logging into Openshift"
+echo "Logging into OpenShift"
 oc login $OPENSHIFT_API_URL \
     --username=$OPENSHIFT_USERNAME \
     --password=$OPENSHIFT_PASSWORD \
     --insecure-skip-tls-verify=true
 
-echo "Logging into Openshift image registry"
+echo "Logging into OpenShift image registry"
 podman login \
   --username $OPENSHIFT_USERNAME \
   --password $(oc whoami -t) \
