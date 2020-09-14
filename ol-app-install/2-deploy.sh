@@ -4,7 +4,7 @@ unset KUBECONFIG
 
 . ./env
 
-echo "Logging into Openshift"
+echo "Logging into OpenShift"
 oc login $OPENSHIFT_API_URL \
     --username=$OPENSHIFT_USERNAME \
     --password=$OPENSHIFT_PASSWORD \
