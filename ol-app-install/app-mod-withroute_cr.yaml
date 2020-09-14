@@ -3,7 +3,7 @@ kind: OpenLibertyApplication
 metadata:
   name: appmod
 spec:
-  applicationImage: image-registry.openshift-image-registry.svc:5000/<userNN-project>/app-modernization:v1.0.0
+  applicationImage: image-registry.openshift-image-registry.svc:5000/userNN-project/app-modernization:v1.0.0
   expose: true
   route:
     host: 'modresort.apps.atsocpd1.dmz'
