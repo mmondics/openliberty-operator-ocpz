@@ -20,6 +20,9 @@ podman login \
 echo "Deleting Openliberty app"
 oc -n $OPENSHIFT_PROJECT delete OpenLibertyApplication appmod
 
+echo "Deleting imagestream"
+oc delete is/app-modernization
+
 sleep 5
 
 
