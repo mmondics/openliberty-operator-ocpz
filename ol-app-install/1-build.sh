@@ -4,13 +4,13 @@ unset KUBECONFIG
 
 . ./env
 
-echo "Logging into Openshift"
+echo "Logging into OpenShift"
 oc login $OPENSHIFT_API_URL \
     --username=$OPENSHIFT_USERNAME \
     --password=$OPENSHIFT_PASSWORD \
     --insecure-skip-tls-verify=true
 
-echo "Logging into Openshift image registry"
+echo "Logging into OpenShift image registry"
 podman login \
     --username $OPENSHIFT_USERNAME \
     --password $(oc whoami -t) \
@@ -25,6 +25,6 @@ buildah build-using-dockerfile \
   -t ${OPENSHIFT_REGISTRY_URL}/$OPENSHIFT_PROJECT/app-modernization:v1.0.0 \
     .
     
-echo "Pushing the container image to the Openshift image registrry"
+echo "Pushing the container image to the OpenShift image registry"
 podman push --tls-verify=false \
   ${OPENSHIFT_REGISTRY_URL}/${OPENSHIFT_PROJECT}/app-modernization:v1.0.0
