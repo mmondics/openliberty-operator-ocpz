@@ -12,3 +12,5 @@ oc login $OPENSHIFT_API_URL \
 
 echo "Creating Openliberty Custom Resource"
 oc -n $OPENSHIFT_PROJECT create -f app-mod-withroute_cr.yaml
+
+sleep 5
