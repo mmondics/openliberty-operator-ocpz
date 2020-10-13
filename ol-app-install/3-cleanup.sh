@@ -23,6 +23,5 @@ oc -n $OPENSHIFT_PROJECT delete OpenLibertyApplication appmod
 echo "Deleting imagestream"
 oc delete is/app-modernization
 
-sleep 5
-
-
+echo "Removing Images"
+podman rmi --all --force
