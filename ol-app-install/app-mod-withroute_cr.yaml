@@ -6,5 +6,5 @@ spec:
   applicationImage: image-registry.openshift-image-registry.svc:5000/userNN-project/app-modernization:v1.0.0
   expose: true
   route:
-    host: 'modresort-userNN.apps.atsocppa.dmz'
+    host: 'modresort-userNN.apps.atsocpd1.dmz'
     path: '/resorts'
