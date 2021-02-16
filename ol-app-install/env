@@ -1,8 +1,8 @@
 # Your OpenShift cluster's API server endpoint URL
-OPENSHIFT_API_URL="api.atsocppa.dmz:6443"
+OPENSHIFT_API_URL="api.atsocpd1.dmz:6443"
 
 # Your Openshift cluster's internal registry route
-OPENSHIFT_REGISTRY_URL="default-route-openshift-image-registry.apps.atsocppa.dmz"
+OPENSHIFT_REGISTRY_URL="default-route-openshift-image-registry.apps.atsocpd1.dmz"
 
 # Your OpenShift username
 OPENSHIFT_USERNAME="userNN"
